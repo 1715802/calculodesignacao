@@ -149,60 +149,38 @@ export class AppComponent implements OnInit {
     let linha3 = new Array(v31, v32, v33, v34);
     let linha4 = new Array(v41, v42, v43, v44);
 
-    //var tabelaCustoDeTransporte = new Array(linha1, linha2, linha3, linha4);
-
     let menorValorLinha1 = Math.min.apply(Math, linha1);
     let menorValorLinha2 = Math.min.apply(Math, linha2);
     let menorValorLinha3 = Math.min.apply(Math, linha3);
     let menorValorLinha4 = Math.min.apply(Math, linha4);
 
     let menoresValoresDasLinhas = new Array(menorValorLinha1, menorValorLinha2, menorValorLinha3, menorValorLinha4);
-
     let tabelaDeCustoReduzida = new Array(linha1, linha2, linha3, linha4);
 
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; j++) {
-        tabelaDeCustoReduzida[i][j] = tabelaDeCustoReduzida[i][j] - menoresValoresDasLinhas[i];
-      }
-    }
+    tabelaDeCustoReduzida = this.subtraiMenorValorDeCadaLinha(tabelaDeCustoReduzida, menoresValoresDasLinhas);
+
 
     this.cr11 = tabelaDeCustoReduzida[0][0];
-    console.log("cr11 = " + this.cr11);
     this.cr12 = tabelaDeCustoReduzida[0][1];
-    console.log("cr12 = " + this.cr12);
     this.cr13 = tabelaDeCustoReduzida[0][2];
-    console.log("cr13 = " + this.cr13);
     this.cr14 = tabelaDeCustoReduzida[0][3];
-    console.log("cr14 = " + this.cr14);
 
     this.cr21 = tabelaDeCustoReduzida[1][0];
-    console.log("cr21 = " + this.cr21);
     this.cr22 = tabelaDeCustoReduzida[1][1];
-    console.log("cr22 = " + this.cr22);
     this.cr23 = tabelaDeCustoReduzida[1][2];
-    console.log("cr23 = " + this.cr23);
     this.cr24 = tabelaDeCustoReduzida[1][3];
-    console.log("cr24 = " + this.cr24);
 
     this.cr31 = tabelaDeCustoReduzida[2][0];
-    console.log("cr11 = " + this.cr31);
     this.cr32 = tabelaDeCustoReduzida[2][1];
-    console.log("cr12 = " + this.cr32);
     this.cr33 = tabelaDeCustoReduzida[2][2];
-    console.log("cr13 = " + this.cr33);
     this.cr34 = tabelaDeCustoReduzida[2][3];
-    console.log("cr14 = " + this.cr34);
 
     this.cr41 = tabelaDeCustoReduzida[3][0];
-    console.log("cr11 = " + this.cr41);
     this.cr42 = tabelaDeCustoReduzida[3][1];
-    console.log("cr12 = " + this.cr42);
     this.cr43 = tabelaDeCustoReduzida[3][2];
-    console.log("cr13 = " + this.cr43);
     this.cr44 = tabelaDeCustoReduzida[3][3];
-    console.log("cr14 = " + this.cr44);
 
-    
+
     let coluna1 = new Array();
     let coluna2 = new Array();
     let coluna3 = new Array();
@@ -222,87 +200,99 @@ export class AppComponent implements OnInit {
     }
 
     const menorValorColuna1 = Math.min.apply(Math, coluna1);
-    console.log(menorValorColuna1);
     const menorValorColuna2 = Math.min.apply(Math, coluna2);
-    console.log(menorValorColuna2);
     const menorValorColuna3 = Math.min.apply(Math, coluna3);
-    console.log(menorValorColuna3);
     const menorValorColuna4 = Math.min.apply(Math, coluna4);
-    console.log(menorValorColuna4);
 
     var menoresValoresDasColunas = new Array(menorValorColuna1, menorValorColuna2, menorValorColuna3, menorValorColuna4);
-    console.log(menoresValoresDasColunas);
 
+    tabelaDeCustoReduzida = this.subtraiMenorValorDeCadaColuna(tabelaDeCustoReduzida, menoresValoresDasColunas);
+
+
+
+    this.cr11 = tabelaDeCustoReduzida[0][0];
+    this.cr12 = tabelaDeCustoReduzida[0][1];
+    this.cr13 = tabelaDeCustoReduzida[0][2];
+    this.cr14 = tabelaDeCustoReduzida[0][3];
+
+    this.cr21 = tabelaDeCustoReduzida[1][0];
+    this.cr22 = tabelaDeCustoReduzida[1][1];
+    this.cr23 = tabelaDeCustoReduzida[1][2];
+    this.cr24 = tabelaDeCustoReduzida[1][3];
+
+    this.cr31 = tabelaDeCustoReduzida[2][0];
+    this.cr32 = tabelaDeCustoReduzida[2][1];
+    this.cr33 = tabelaDeCustoReduzida[2][2];
+    this.cr34 = tabelaDeCustoReduzida[2][3];
+
+    this.cr41 = tabelaDeCustoReduzida[3][0];
+    this.cr42 = tabelaDeCustoReduzida[3][1];
+    this.cr43 = tabelaDeCustoReduzida[3][2];
+    this.cr44 = tabelaDeCustoReduzida[3][3];
+
+
+    let tabelaDesignacao = new Array(new Array(0, 0, 0, 0), new Array(0, 0, 0, 0), new Array(0, 0, 0, 0), new Array(0, 0, 0, 0));
+
+    tabelaDesignacao = this.calculaDesignacao(tabelaDeCustoReduzida);
+
+    this.dt11 = tabelaDesignacao[0][0];
+    this.dt12 = tabelaDesignacao[0][1];
+    this.dt13 = tabelaDesignacao[0][2];
+    this.dt14 = tabelaDesignacao[0][3];
+
+    this.dt21 = tabelaDesignacao[1][0];
+    this.dt22 = tabelaDesignacao[1][1];
+    this.dt23 = tabelaDesignacao[1][2];
+    this.dt24 = tabelaDesignacao[1][3];
+
+    this.dt31 = tabelaDesignacao[2][0];
+    this.dt32 = tabelaDesignacao[2][1];
+    this.dt33 = tabelaDesignacao[2][2];
+    this.dt34 = tabelaDesignacao[2][3];
+
+    this.dt41 = tabelaDesignacao[3][0];
+    this.dt42 = tabelaDesignacao[3][1];
+    this.dt43 = tabelaDesignacao[3][2];
+    this.dt44 = tabelaDesignacao[3][3];
+
+    this.mostrar();
+  }
+
+  subtraiMenorValorDeCadaLinha(tabelaDeCustoReduzida: any[][], menoresValoresDasLinhas: any[]) {
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        tabelaDeCustoReduzida[i][j] = tabelaDeCustoReduzida[i][j] - menoresValoresDasLinhas[i];
+      }
+    }
+    return tabelaDeCustoReduzida;
+  }
+
+  subtraiMenorValorDeCadaColuna(tabelaDeCustoReduzida: any[][], menoresValoresDasColunas: any[]) {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
         tabelaDeCustoReduzida[j][i] = tabelaDeCustoReduzida[j][i] - menoresValoresDasColunas[i];
       }
     }
+    return tabelaDeCustoReduzida;
+  }
 
-    this.cr11 = tabelaDeCustoReduzida[0][0];
-    console.log("cr11 = " + this.cr11);
-    this.cr12 = tabelaDeCustoReduzida[0][1];
-    console.log("cr12 = " + this.cr12);
-    this.cr13 = tabelaDeCustoReduzida[0][2];
-    console.log("cr13 = " + this.cr13);
-    this.cr14 = tabelaDeCustoReduzida[0][3];
-    console.log("cr14 = " + this.cr14);
-
-    this.cr21 = tabelaDeCustoReduzida[1][0];
-    console.log("cr21 = " + this.cr21);
-    this.cr22 = tabelaDeCustoReduzida[1][1];
-    console.log("cr22 = " + this.cr22);
-    this.cr23 = tabelaDeCustoReduzida[1][2];
-    console.log("cr23 = " + this.cr23);
-    this.cr24 = tabelaDeCustoReduzida[1][3];
-    console.log("cr24 = " + this.cr24);
-
-    this.cr31 = tabelaDeCustoReduzida[2][0];
-    console.log("cr11 = " + this.cr31);
-    this.cr32 = tabelaDeCustoReduzida[2][1];
-    console.log("cr12 = " + this.cr32);
-    this.cr33 = tabelaDeCustoReduzida[2][2];
-    console.log("cr13 = " + this.cr33);
-    this.cr34 = tabelaDeCustoReduzida[2][3];
-    console.log("cr14 = " + this.cr34);
-
-    this.cr41 = tabelaDeCustoReduzida[3][0];
-    console.log("cr11 = " + this.cr41);
-    this.cr42 = tabelaDeCustoReduzida[3][1];
-    console.log("cr12 = " + this.cr42);
-    this.cr43 = tabelaDeCustoReduzida[3][2];
-    console.log("cr13 = " + this.cr43);
-    this.cr44 = tabelaDeCustoReduzida[3][3];
-    console.log("cr14 = " + this.cr44);
-
-
-    // //Designação
-    // var tabelaDesignacao = tabelaDeCustoReduzida;
-    // for (let i = 0; i < 4; i++) {
-    //   for (let j = 0; j < 4; j++) {
-    //     if (tabelaDeCustoReduzida[i][j] == 0 && menoresValoresDasLinhas[i] == 0 && menoresValoresDasColunas[j] == 0) {
-    //       tabelaDesignacao[i][j] = 1;
-    //     }
-    //   }
-    // }
-
-    // //Apresentação
-    // for (let i = 0; i < 4; i++) {
-    //   for (let j = 0; j < 4; j++) {
-    //     console.log(tabelaDesignacao[i][j]);
-    //   }
-    //   console.log('\n');
-    // }
-
-
-    this.mostrar();
-
+  calculaDesignacao(tabelaDeCustoReduzida: any[][]) {
+    let marcaLinha = new Array(0, 0, 0, 0);
+    let marcaColuna = new Array(0, 0, 0, 0);
+    let tabelaDesignacao = new Array(new Array(0, 0, 0, 0), new Array(0, 0, 0, 0), new Array(0, 0, 0, 0), new Array(0, 0, 0, 0));
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (tabelaDeCustoReduzida[i][j] == 0 && marcaLinha[i] == 0 && marcaLinha[j] == 0) {
+          tabelaDesignacao[i][j] = 1;
+          marcaLinha[i] = 1;
+          marcaColuna[j] = 1;
+        }
+      }
+    }
+    return tabelaDesignacao;
   }
 
   mostrar() {
     this.ocultarResultado = false;
   }
-
-
-
 }
