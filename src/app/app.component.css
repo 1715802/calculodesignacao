@@ -1,10 +1,19 @@
 h1 {
     margin: 50px;
 }
+h2{
+    margin: 50px;
+    color: darkred;
+}
 .tabela {
     margin: 50px;
 }
 
 .botao {
     margin-left: 50px;
+}
+
+.botao-limpar {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
